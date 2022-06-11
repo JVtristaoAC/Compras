@@ -1,0 +1,49 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Mercado.View.Lista"
+             Title="Lista de Compras">
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Text="Novo" x:Name="Cadastrar" Clicked="Cadastrar_Clicked"/>
+        <ToolbarItem Text="Somar" x:Name="Somar" Clicked="Somar_Clicked"/>
+    </ContentPage.ToolbarItems>
+    
+    <ContentPage.Content>
+        
+        <StackLayout>
+            <SearchBar x:Name="txt_Busca" Placeholder="Qual Produto?" TextChanged="txt_Busca_TextChanged"/>
+
+            <RefreshView x:Name="ref_carregando" IsRefreshing="True">
+
+                <ListView x:Name="list_Produto" ItemSelected="list_Produto_ItemSelected">
+                    <ListView.Header>
+                        <Grid RowDefinitions="Auto" ColumnDefinitions="*, Auto, Auto">
+                            <Label Grid.Row="0" Grid.Column="0" Text="Descrição"/>
+                            <Label Grid.Row="0" Grid.Column="1" Text="Quantidade"/>
+                            <Label Grid.Row="0" Grid.Column="2" Text="Preço"/>
+
+                        </Grid>
+                    </ListView.Header>
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <ViewCell>
+                                <ViewCell.ContextActions>
+                                    <MenuItem Text="Remover" x:Name="Remover" Clicked="Remover_Clicked"/>
+                                </ViewCell.ContextActions>
+                                    
+                                <Grid RowDefinitions="Auto" ColumnDefinitions="*, Auto, Auto">
+                                    <Label Grid.Row="0" Grid.Column="0" Text="{Binding descricao}"/>
+                                    <Label Grid.Row="0" Grid.Column="1" Text="{Binding quantidade}"/>
+                                    <Label Grid.Row="0" Grid.Column="2" Text="{Binding preco}"/>
+                                </Grid>
+                            </ViewCell>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
+                
+            </RefreshView>
+            
+        </StackLayout>
+        
+    </ContentPage.Content>
+</ContentPage>
